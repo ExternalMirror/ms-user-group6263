@@ -33,7 +33,7 @@ class UserControllerTest {
     void getUsersGivenUsersIsNotEmptyExpectRespondOk() throws Exception {
         //setup
         List<UserDto> users = new ArrayList<>();
-        users.add(new UserDto(1L, "Rashid", "Mammadli", "AZE"));
+        users.add(new UserDto(1L, "Rashid", "Mammadli", "AZE", ""));
         Mockito.when(userService.getUsers()).thenReturn(users);
 
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/users")).andReturn();
