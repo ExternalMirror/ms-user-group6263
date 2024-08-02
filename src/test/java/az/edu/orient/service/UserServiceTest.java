@@ -41,7 +41,7 @@ class UserServiceTest {
     void getUsersGivenUsersIsNotEmptyExpectReturnUserDtoList() throws OrientException {
         // setup
         List<UserEntity> users = new ArrayList<>();
-        users.add(new UserEntity(1L, "Rashid", "Mammadli", "AZE"));
+        users.add(new UserEntity(1L, "Rashid", "Mammadli", "AZE" ,""));
         Mockito.when(userRepository.findAll()).thenReturn(users);
         // when
         List<UserDto> userDtos = userService.getUsers();
