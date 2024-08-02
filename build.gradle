@@ -4,6 +4,15 @@ plugins {
     id "io.freefair.lombok" version "8.4"
     id 'java'
     id 'jacoco'
+    id "org.sonarqube" version "4.4.1.3373"
+}
+
+sonar {
+    properties {
+        property "sonar.projectKey", "orient-academy_ms-users-group6263"
+        property "sonar.organization", "orient-academy"
+        property "sonar.host.url", "https://sonarcloud.io"
+    }
 }
 
 jacoco {
