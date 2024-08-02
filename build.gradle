@@ -3,6 +3,11 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
     id "io.freefair.lombok" version "8.4"
     id 'java'
+    id 'jacoco'
+}
+
+jacoco {
+    toolVersion = "0.8.11"
 }
 
 group = 'az.edu.orient'
@@ -31,4 +36,13 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = true
+        html.required = true
+    }
 }
