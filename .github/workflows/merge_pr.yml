@@ -49,7 +49,7 @@ jobs:
       - name: Update kube config
         run: |
           aws sts get-caller-identity
-          aws eks update-kubeconfig --name orient --region us-east-2
+          aws eks update-kubeconfig --region us-east-2 --name orient
           kubectl get pods
 
       - name: Deploy to EKS
