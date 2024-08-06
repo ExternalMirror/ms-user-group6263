@@ -42,9 +42,9 @@ jobs:
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
 
       - name: Install kubectl
-        uses: azure/setup-kubectl@v4
+        uses: azure/setup-kubectl@v3
         with:
-          version: 'latest'
+          version: '1.27'
         id: install
 
       - name: Update kube config
