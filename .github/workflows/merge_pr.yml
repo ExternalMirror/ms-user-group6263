@@ -41,11 +41,9 @@ jobs:
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
 
-      - name: Install kubectl
-        uses: azure/setup-kubectl@v3
-        with:
-          version: '1.15.0'
-        id: install
+      - uses: yokawasa/action-setup-kube-tools@v0.11.1
+      - run: |
+          kubectl version --client
 
       - name: Update kube config
         run: aws eks update-kubeconfig --name orient
