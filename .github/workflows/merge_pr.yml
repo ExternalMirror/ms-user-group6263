@@ -41,27 +41,17 @@ jobs:
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
 
-      - name: deploy to cluster
-        uses: qazz92/kubectl@1.0.3
-        env:
-          kube_confg_data: ${{ secrets.KUBE_CONFIG_DATA }}
-          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws_region: us-east-2
-        with:
-          args: apply -f infra/deployment.yml
+      - name: install kubectl
+        run:    curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl-convert.sha256" & sudo install -o root -g root -m 0755 kubectl-convert /usr/local/bin/kubectl-convert
 
 
-#      - uses: yokawasa/action-setup-kube-tools@v0.11.1
-#      - run: |
-#          kubectl version --client
 
-#      - name: Update kube config
-#        run: aws eks update-kubeconfig --name orient
+      - name: Update kube config
+        run: aws eks update-kubeconfig --name orient
 
-#      - name: Deploy to EKS
-#        run: |
-#          kubectl apply -f infra/deployment.yml --validate=false
-#          kubectl apply -f infra/service.yml --validate=false
-#          kubectl rollout restart -f infra/deployment.yml --validate=false
+      - name: Deploy to EKS
+        run: |
+          kubectl apply -f infra/deployment.yml --validate=false
+          kubectl apply -f infra/service.yml --validate=false
+          kubectl rollout restart -f infra/deployment.yml --validate=false
           
