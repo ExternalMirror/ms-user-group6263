@@ -1,5 +1,6 @@
 name: Build Workflow
 on: [push]
+permissions: write-all
 jobs:
   BuildAndTest:
     runs-on: ubuntu-latest
