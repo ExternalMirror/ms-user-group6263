@@ -16,4 +16,4 @@ spec:
         - name: ms-users-group6263
           image: 057196872298.dkr.ecr.us-east-2.amazonaws.com/ms-users-group6263:latest
           ports:
-            - containerPort: 8080
+            - containerPort: 8084

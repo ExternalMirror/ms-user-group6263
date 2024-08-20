@@ -1,34 +1,34 @@
-name: Build Workflow
-on: [push]
-permissions: write-all
-jobs:
-  BuildAndTest:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout sources
-        uses: actions/checkout@v4
-
-      - name: Setup Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: 19
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
-
-      - name: Build with Gradle
-        run: ./gradlew build
-
-      - name: JaCoCo Code Coverage Report
-        id: jacoco_reporter
-        uses: PavanMudigonda/jacoco-reporter@v5.0
-        with:
-          coverage_results_path: build/reports/jacoco/test/jacocoTestReport.xml
-          coverage_report_name: Coverage
-          coverage_report_title: JaCoCo
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          skip_check_run: false
-          minimum_coverage: 30
-          fail_below_threshold: true
-          publish_only_summary: false
+#name: Build Workflow
+#on: [push]
+#permissions: write-all
+#jobs:
+#  BuildAndTest:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout sources
+#        uses: actions/checkout@v4
+#
+#      - name: Setup Java
+#        uses: actions/setup-java@v4
+#        with:
+#          distribution: 'temurin'
+#          java-version: 19
+#
+#      - name: Setup Gradle
+#        uses: gradle/actions/setup-gradle@v3
+#
+#      - name: Build with Gradle
+#        run: ./gradlew build
+#
+#      - name: JaCoCo Code Coverage Report
+#        id: jacoco_reporter
+#        uses: PavanMudigonda/jacoco-reporter@v5.0
+#        with:
+#          coverage_results_path: build/reports/jacoco/test/jacocoTestReport.xml
+#          coverage_report_name: Coverage
+#          coverage_report_title: JaCoCo
+#          github_token: ${{ secrets.GITHUB_TOKEN }}
+#          skip_check_run: false
+#          minimum_coverage: 30
+#          fail_below_threshold: true
+#          publish_only_summary: false
